@@ -9,7 +9,7 @@ const port = 3000;
 app.use(cors());
 app.use(express.json());
 
-// app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.post("/chatgpt-request", async (req, res) => {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -34,6 +34,6 @@ app.post("/chatgpt-request", async (req, res) => {
     res.send({ choices: json.choices, created: json.created });
 });
 
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
     console.log(`ChatGPT Clone app listening on port ${port}`);
 });
